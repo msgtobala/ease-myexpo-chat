@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
@@ -11,6 +11,7 @@ interface HeaderProps {
 
 export default function Header({ onMenuToggle }: HeaderProps) {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useAuth();
   const [userData, setUserData] = useState<any>(null);
 
@@ -44,6 +45,13 @@ export default function Header({ onMenuToggle }: HeaderProps) {
       navigate("/exhibitor/profile", {
         state: { userData },
       });
+    }
+  };
+
+  const handleLogoClick = () => {
+    // Only navigate if we're not already on the home page
+    if (location.pathname !== "/home") {
+      navigate("/home");
     }
   };
 
@@ -88,7 +96,10 @@ export default function Header({ onMenuToggle }: HeaderProps) {
         </button>
 
         {/* Logo */}
-        <div className="flex items-center">
+        <div 
+          className="flex items-center cursor-pointer hover:opacity-80"
+          onClick={handleLogoClick}
+        >
           <img
             src={EasemyexpoLogo}
             alt="Easemyexpo"
@@ -145,7 +156,7 @@ export default function Header({ onMenuToggle }: HeaderProps) {
         </button>
 
         {/* Notification Icon */}
-        <div className="relative">
+        {/* <div className="relative">
           <svg
             width="24"
             height="24"
@@ -167,7 +178,7 @@ export default function Header({ onMenuToggle }: HeaderProps) {
               9+
             </span>
           </div>
-        </div>
+        </div> */}
 
         {/* Chat Icon */}
         <div className="relative">

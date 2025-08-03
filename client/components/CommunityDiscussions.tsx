@@ -1,23 +1,34 @@
 import React from 'react';
+import { useToast } from "./ui/use-toast";
 
 export default function CommunityDiscussions() {
+  const { toast } = useToast();
+  
   const communities = [
     {
       name: "Expo BLR",
       description: "Official bangalore...",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/420294678ac6505d9c5a5d63c2e787c16492d634?width=90"
+      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop"
     },
     {
       name: "Expo Delhi", 
       description: "Join us in delhi expo...",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/e4aec95ad6b910adf1f8a48fc3c50628387d932c?width=55"
+      image: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&auto=format&fit=crop"
     },
     {
       name: "Digital Expo",
       description: "World's largest dig...",
-      image: "https://api.builder.io/api/v1/image/assets/TEMP/420294678ac6505d9c5a5d63c2e787c16492d634?width=90"
+      image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&auto=format&fit=crop"
     }
   ];
+
+  const handleJoinClick = () => {
+    toast({
+      title: "Coming Soon",
+      description: "This feature will be available soon!",
+      duration: 3000,
+    });
+  };
 
   return (
     <div className="w-full bg-[#FCFDFD] rounded-[16px] p-6">
@@ -44,7 +55,10 @@ export default function CommunityDiscussions() {
             
             {/* Join Button - only show for first 3 items */}
             {index < 3 && (
-              <button className="w-[65px] h-[32px] border border-[#10B981] bg-white rounded-lg flex items-center justify-center">
+              <button 
+                onClick={handleJoinClick}
+                className="w-[65px] h-[32px] border border-[#10B981] bg-white rounded-lg flex items-center justify-center"
+              >
                 <span className="text-[12px] font-medium text-[#10B981]">Join</span>
               </button>
             )}
@@ -54,7 +68,12 @@ export default function CommunityDiscussions() {
 
       {/* See All Button */}
       <div className="mt-8 flex justify-center">
-        <button className="text-[12px] font-medium text-[#10B981]">See All</button>
+        <button 
+          onClick={handleJoinClick}
+          className="text-[12px] font-medium text-[#10B981]"
+        >
+          See All
+        </button>
       </div>
     </div>
   );

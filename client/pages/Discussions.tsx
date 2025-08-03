@@ -9,6 +9,7 @@ import TopExhibitions from "../components/TopExhibitions";
 import { useAuth } from "../contexts/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../lib/firebase";
+import { useToast } from "../hooks/use-toast";
 
 export default function Discussions() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -18,6 +19,7 @@ export default function Discussions() {
   >("both");
   const [userData, setUserData] = useState<any>(null);
   const { user } = useAuth();
+  const { toast } = useToast();
 
   // Fetch user data
   useEffect(() => {
@@ -52,6 +54,14 @@ export default function Discussions() {
 
   const closePostModal = () => {
     setIsPostModalOpen(false);
+  };
+
+  const handleFollowClick = () => {
+    toast({
+      title: "Coming Soon",
+      description: "This feature will be available soon!",
+      duration: 3000,
+    });
   };
 
   return (
@@ -247,19 +257,21 @@ export default function Discussions() {
               {/* Person 1 */}
               <div className="flex items-center gap-3">
                 <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/d064c0d047315af10f082e5ddd186ed5e3ba3001?width=80"
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop"
                   alt="Steve Jobs"
-                  className="w-[37px] h-10 rounded-full"
+                  className="w-[37px] h-10 rounded-full object-cover"
                 />
                 <div className="flex-1">
                   <div className="text-[#212121] font-bricolage text-[16px] font-medium">
-                    Steve Jobs
+                    John Anderson
                   </div>
                   <div className="text-[#212121] font-roboto text-[11px] font-light">
-                    CEO of Apple
+                    Tech Entrepreneur
                   </div>
                 </div>
-                <button className="border border-[#10B981] bg-white text-[#10B981] px-4 py-2 rounded-lg text-[12px] font-medium">
+                <button 
+                  onClick={handleFollowClick}
+                  className="border border-[#10B981] bg-white text-[#10B981] px-4 py-2 rounded-lg text-[12px] font-medium">
                   Follow
                 </button>
               </div>
@@ -267,19 +279,21 @@ export default function Discussions() {
               {/* Person 2 */}
               <div className="flex items-center gap-3">
                 <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/d064c0d047315af10f082e5ddd186ed5e3ba3001?width=80"
-                  alt="Ryan Roslansky"
-                  className="w-[37px] h-10 rounded-full"
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&auto=format&fit=crop"
+                  alt="Sarah Mitchell"
+                  className="w-[37px] h-10 rounded-full object-cover"
                 />
                 <div className="flex-1">
                   <div className="text-[#212121] font-roboto text-[16px] font-medium">
-                    Ryan Roslansky
+                    Sarah Mitchell
                   </div>
                   <div className="text-[#212121] font-roboto text-[11px] font-light">
-                    CEO of LinkedIn
+                    Event Director
                   </div>
                 </div>
-                <button className="border border-[#10B981] bg-white text-[#10B981] px-4 py-2 rounded-lg text-[12px] font-medium">
+                <button 
+                  onClick={handleFollowClick}
+                  className="border border-[#10B981] bg-white text-[#10B981] px-4 py-2 rounded-lg text-[12px] font-medium">
                   Follow
                 </button>
               </div>
@@ -287,19 +301,21 @@ export default function Discussions() {
               {/* Person 3 */}
               <div className="flex items-center gap-3">
                 <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/d064c0d047315af10f082e5ddd186ed5e3ba3001?width=80"
-                  alt="Dylan Field"
-                  className="w-[37px] h-10 rounded-full"
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&auto=format&fit=crop"
+                  alt="Michael Chen"
+                  className="w-[37px] h-10 rounded-full object-cover"
                 />
                 <div className="flex-1">
                   <div className="text-[#212121] font-roboto text-[16px] font-medium">
-                    Dylan Field
+                    Michael Chen
                   </div>
                   <div className="text-[#212121] font-roboto text-[11px] font-light">
-                    CEO of Figma
+                    Exhibition Designer
                   </div>
                 </div>
-                <button className="border border-[#10B981] bg-white text-[#10B981] px-4 py-2 rounded-lg text-[12px] font-medium">
+                <button 
+                  onClick={handleFollowClick}
+                  className="border border-[#10B981] bg-white text-[#10B981] px-4 py-2 rounded-lg text-[12px] font-medium">
                   Follow
                 </button>
               </div>
@@ -307,7 +323,9 @@ export default function Discussions() {
 
             <div className="mt-6 pt-4 border-t border-[#DFDFDF]">
               <div className="text-center">
-                <button className="text-[#10B981] font-roboto text-[12px] font-medium">
+                <button 
+                  onClick={handleFollowClick}
+                  className="text-[#10B981] font-roboto text-[12px] font-medium">
                   See All
                 </button>
               </div>

@@ -267,11 +267,14 @@ export default function PostsList() {
 
             {/* Comment Section */}
             <div className="mt-4 bg-[#F6F6F6] rounded-[18px] p-3 flex items-center gap-3">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/87dd5cf384b309f9d69ab7652e9ce6638a0b9474?width=52"
-                alt="Profile"
-                className="w-[26px] h-[26px] rounded-full"
-              />
+            <img
+                  src={
+                    post.postedByProfileImage ||
+                    "https://api.builder.io/api/v1/image/assets/TEMP/d064c0d047315af10f082e5ddd186ed5e3ba3001?width=80"
+                  }
+                  alt={post.postedBy}
+                  className="w-11 h-11 rounded-full object-cover"
+                />
               <input
                 type="text"
                 placeholder="Write a comment"
